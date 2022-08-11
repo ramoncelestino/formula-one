@@ -44,6 +44,21 @@
   margin: 20px
 }
 
+.pilot-name {
+  margin-right: 12px;
+}
+
+.pilot-flag {
+  width: auto;
+  height: 25px;
+  align-self: center;
+}
+
+.card-header{
+  display: flex;
+  justify-content: center;
+}
+
 .drivers {
   display: flex;
   flex-direction: row;

@@ -1,9 +1,9 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { toHaveErrorMessage } from '@testing-library/jest-dom/dist/matchers';
 
 function App() {
-
   const [data, setData] = useState();
   const [inputFilled, setInputFilled] = useState('');
   const [search, setSearch] = useState(false);
@@ -36,6 +36,7 @@ function App() {
     setSearch(true)
   }
   
+  console.log(data);
 
   return (
     <div className="App">
@@ -44,7 +45,10 @@ function App() {
       <div className="drivers">
       {data && data.map((driver) => (
           <div className="pilot-card">
-            <h1>{driver.name}</h1>
+            <div className='card-header'>
+              <h2 className='pilot-name'>{driver.name}</h2>
+              <img className='pilot-flag' src={`https://countryflagsapi.com/png/${driver.country.code}`}></img>
+            </div>
             <img className="pilot-image" src={driver.image}></img>
           </div>
       ))}
