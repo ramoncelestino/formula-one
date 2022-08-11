@@ -1,23 +1,52 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
+
+  const [data, setData] = useState();
+  const [inputFilled, setInputFilled] = useState('');
+  const [search, setSearch] = useState(false);
+
+  const options = {
+    method: 'GET',
+    url: 'https://api-formula-1.p.rapidapi.com/drivers',
+    params: {search: inputFilled},
+    headers: {
+      'X-RapidAPI-Key': '82cedb7c33mshab52deea125628dp1fc32cjsn35026e797e21',
+      'X-RapidAPI-Host': 'api-formula-1.p.rapidapi.com'
+    }
+  };
+
+  // O useEffect aqui vai ser executado se determinada ação ocorrer
+  // No caso há um parâmetro que ele tem, que está na linha 32 entre colchetes,
+  // Se esse parâmetro estiver vazio, o useEffect vai ser executado uma unica vez,
+  // Quando o componente for renderizado, se estiver preenchido, vai executar a
+  // cada vez que o estado do que for passado como parametro mudar
+  useEffect(() => {
+    axios.request(options)
+    .then((result) => setData(result.data.response))
+    .catch((error) => console.error(error))
+
+    setSearch(false);
+  }, [search])
+
+
+  const handleSearch = () => {
+    setSearch(true)
+  }
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input onChange={(e) => setInputFilled(e.target.value)}></input>
+      <button onClick={handleSearch}>Search Driver</button>
+      {data && data.map((driver) => (
+          <>
+            <h1>{driver.name}</h1>
+            <img src={driver.image}></img>
+          </>
+      ))}
     </div>
   );
 }
