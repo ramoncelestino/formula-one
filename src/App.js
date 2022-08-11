@@ -41,12 +41,14 @@ function App() {
     <div className="App">
       <input onChange={(e) => setInputFilled(e.target.value)}></input>
       <button onClick={handleSearch}>Search Driver</button>
+      <div className="drivers">
       {data && data.map((driver) => (
-          <>
+          <div className="pilot-card">
             <h1>{driver.name}</h1>
-            <img src={driver.image}></img>
-          </>
+            <img className="pilot-image" src={driver.image}></img>
+          </div>
       ))}
+      </div>
     </div>
   );
 }
