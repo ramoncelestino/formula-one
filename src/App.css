@@ -1,6 +1,14 @@
 .App {
   text-align: center;
-  background-color: #fff;
+  background: rgb(76,76,76); /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 0%, rgba(17,17,17,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(76,76,76,1)), color-stop(0%,rgba(89,89,89,1)), color-stop(100%,rgba(17,17,17,1))); /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(76,76,76,1) 0%,rgba(89,89,89,1) 0%,rgba(17,17,17,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-radial-gradient(center, ellipse cover, rgba(76,76,76,1) 0%,rgba(89,89,89,1) 0%,rgba(17,17,17,1) 100%); /* Opera 12+ */
+  background: -ms-radial-gradient(center, ellipse cover, rgba(76,76,76,1) 0%,rgba(89,89,89,1) 0%,rgba(17,17,17,1) 100%); /* IE10+ */
+  background: radial-gradient(ellipse at center, rgba(76,76,76,1) 0%,rgba(89,89,89,1) 0%,rgba(17,17,17,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#111111',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  height: 100vh; /* Note a medida */
 }
 
 .App-logo {
@@ -29,41 +37,6 @@
   color: #61dafb;
 }
 
-.pilot-image {
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-}
-
-.pilot-card {
-  width: 300px;
-  height: 400px;
-  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  background-color: #f9f9f9;
-  margin: 20px
-}
-
-.pilot-name {
-  margin-right: 12px;
-}
-
-.pilot-flag {
-  width: auto;
-  height: 25px;
-  align-self: center;
-}
-
-.card-header{
-  display: flex;
-  justify-content: center;
-}
-
-.drivers {
-  display: flex;
-  flex-direction: row;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -71,4 +44,24 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.filter {
+  padding: 30px 0px;
+}
+
+.filter input {  
+  border: solid;
+  border-color: rgb(255, 255, 255);
+  border-radius: 5px 0px 0px 5px;
+}
+
+.filter input:focus-visible {  
+  border: 0px;
+}
+
+.filter button {
+  border: solid;
+  border-color: rgb(255, 255, 255);
+  border-radius: 0px 5px 5px 0px;
 }

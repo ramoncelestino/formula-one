@@ -1,22 +1,38 @@
 import './App.css';
+import DriverList from './Components/DriverList';
+import TeamsList from './Components/TeamList';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toHaveErrorMessage } from '@testing-library/jest-dom/dist/matchers';
 
 function App() {
+  const [options, setOptions] = useState({
+    method: 'GET',
+    url: 'https://api-formula-1.p.rapidapi.com/drivers',
+    params: {search: 'ham'},
+    headers: {
+      'X-RapidAPI-Key': '0e9cab5be1mshcfae3dc43f30f9bp188b61jsn8e2c8b3f816d',
+      'X-RapidAPI-Host': 'api-formula-1.p.rapidapi.com'
+    }
+  })
+  const [searchType, setSearchType] = useState('drivers');
   const [data, setData] = useState();
   const [inputFilled, setInputFilled] = useState('');
   const [search, setSearch] = useState(false);
 
-  const options = {
-    method: 'GET',
-    url: 'https://api-formula-1.p.rapidapi.com/drivers',
-    params: {search: inputFilled},
-    headers: {
-      'X-RapidAPI-Key': '82cedb7c33mshab52deea125628dp1fc32cjsn35026e797e21',
-      'X-RapidAPI-Host': 'api-formula-1.p.rapidapi.com'
-    }
-  };
+  useEffect(() => {
+    setOptions(
+      {
+        method: 'GET',
+        url: `https://api-formula-1.p.rapidapi.com/${searchType}`,
+        params: {search: inputFilled},
+        headers: {
+          'X-RapidAPI-Key': '0e9cab5be1mshcfae3dc43f30f9bp188b61jsn8e2c8b3f816d',
+          'X-RapidAPI-Host': 'api-formula-1.p.rapidapi.com'
+        }
+      }
+    );
+  }, [searchType])
 
   // O useEffect aqui vai ser executado se determinada ação ocorrer
   // No caso há um parâmetro que ele tem, que está na linha 32 entre colchetes,
@@ -31,28 +47,28 @@ function App() {
     setSearch(false);
   }, [search])
 
-
   const handleSearch = () => {
-    setSearch(true)
+    setSearch(true);
   }
-  
-  console.log(data);
 
+  const handleSearchType = (e) => {
+    setSearchType(e.target.value)
+    setData();
+  }
+
+  console.log(searchType, search, data)
   return (
     <div className="App">
-      <input onChange={(e) => setInputFilled(e.target.value)}></input>
-      <button onClick={handleSearch}>Search Driver</button>
-      <div className="drivers">
-      {data && data.map((driver) => (
-          <div className="pilot-card">
-            <div className='card-header'>
-              <h2 className='pilot-name'>{driver.name}</h2>
-              <img className='pilot-flag' src={`https://countryflagsapi.com/png/${driver.country.code}`}></img>
-            </div>
-            <img className="pilot-image" src={driver.image}></img>
-          </div>
-      ))}
+      <select name="search-type" onChange={handleSearchType}>
+        <option value="drivers">drivers</option>
+        <option value="teams">teams</option>
+      </select>
+      <div className='filter'>
+        <input onChange={(e) => setInputFilled(e.target.value)}></input>
+        <button onClick={handleSearch}>Search</button>
       </div>
+      {searchType == 'drivers' && <DriverList Driver_Data= {data} />}
+      {searchType == 'teams' && <TeamsList Team_Data= {data} />}
     </div>
   );
 }

@@ -1,0 +1,56 @@
+.pilot-informations{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.pilot-image {
+  border-radius: 50%;
+  width: 170px;
+  height: 170px;
+  margin: 13px 0px;
+  align-self: center;
+}
+  
+.pilot-name, .pilot-number, .pilot-country, .pilot-birthdate {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffffe0;
+}
+
+.pilot-teams {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffffe0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.teams-list {
+  text-align: left;
+  padding-left: 2%;
+  padding-right: 0 !important;
+}
+
+.pilot-flag {
+  width: auto;
+  height: 15px;
+  align-self: center;
+}
+
+.card-header{
+  display: flex;
+  justify-content: center;
+}
+
+.drivers {
+  display: flex;
+  flex-direction: row;
+}
+
+.pilot-card {
+  /* background-color: blue !important; */
+}
