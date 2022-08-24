@@ -1,6 +1,10 @@
 import './App.css';
+import Modal from 'react-bootstrap/Modal';
 import DriverList from './Components/DriverList';
 import TeamsList from './Components/TeamList';
+import DriverInfo from './Components/DriverInfo';
+import TeamInfo from './Components/TeamInfo';
+import Panel from './UI/Panel';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toHaveErrorMessage } from '@testing-library/jest-dom/dist/matchers';
@@ -17,13 +21,15 @@ function App() {
   })
   const [searchType, setSearchType] = useState('drivers');
   const [data, setData] = useState();
+  const [driverInfo, setDriverInfo] = useState({});
+  const [teamInfo, setTeamInfo] = useState({});
+  const [cardClick, setCardClick] = useState(false);
   const [inputFilled, setInputFilled] = useState('');
   const [search, setSearch] = useState(false);
 
   useEffect(() => {
     setOptions(
-      {
-        method: 'GET',
+      { method: 'GET',
         url: `https://api-formula-1.p.rapidapi.com/${searchType}`,
         params: {search: inputFilled},
         headers: {
@@ -32,7 +38,7 @@ function App() {
         }
       }
     );
-  }, [searchType])
+  }, [searchType, inputFilled])
 
   // O useEffect aqui vai ser executado se determinada ação ocorrer
   // No caso há um parâmetro que ele tem, que está na linha 32 entre colchetes,
@@ -47,6 +53,14 @@ function App() {
     setSearch(false);
   }, [search])
 
+  const handleClosePanel = () => {
+    setCardClick(false);
+  }
+
+  const handleShowPanel = () => {
+    setCardClick(true);
+  }
+
   const handleSearch = () => {
     setSearch(true);
   }
@@ -56,7 +70,16 @@ function App() {
     setData();
   }
 
-  console.log(searchType, search, data)
+  const onClickDriverHandler = (e) => {
+    setDriverInfo(e);
+    handleShowPanel();
+  }
+
+  const onClickTeamHandler = (e) => {
+    setTeamInfo(e);
+    handleShowPanel();
+  }
+
   return (
     <div className="App">
       <select name="search-type" onChange={handleSearchType}>
@@ -67,8 +90,17 @@ function App() {
         <input onChange={(e) => setInputFilled(e.target.value)}></input>
         <button onClick={handleSearch}>Search</button>
       </div>
-      {searchType == 'drivers' && <DriverList Driver_Data= {data} />}
-      {searchType == 'teams' && <TeamsList Team_Data= {data} />}
+      {searchType == 'drivers' && <DriverList Drivers_Data= {data} onClickDriver = {onClickDriverHandler} />}
+      {searchType == 'teams' && <TeamsList Teams_Data= {data} onClickTeam = {onClickTeamHandler}/>}
+      <Modal show={cardClick} onHide={handleClosePanel} backdrop="static" keyboard={false} size="lg" centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Infomations</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {searchType == 'drivers' && <DriverInfo driver_data = {driverInfo}/>}
+          {searchType == 'teams' && <TeamInfo team_data = {teamInfo}/>}
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

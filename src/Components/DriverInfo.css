@@ -1,0 +1,59 @@
+.pilot-informations{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .pilot-image-info {
+    border-radius: 50%;
+    width: 170px;
+    height: 170px;
+    margin: 13px 0px;
+  }
+
+  .pilot-image-container {
+    text-align: center;
+  }
+    
+  .text-info {
+    font-size: 14px;
+    font-weight: bold;
+    color: #e1e1e1 !important;
+  }
+  
+  .pilot-teams {
+    font-size: 14px;
+    font-weight: bold;
+    color: #e1e1e1;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  
+  .pilot-flag {
+    width: auto;
+    height: 15px;
+    align-self: center;
+  }
+
+  .painel-inner {
+    display: flex;
+  }
+
+.pilot-teams-list-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.pilot-team-image-div{
+    margin-right: 15px;
+}
+
+.pilot-team-image{
+    width: 90px;
+    height: auto;
+}

@@ -65,3 +65,11 @@
   border-color: rgb(255, 255, 255);
   border-radius: 0px 5px 5px 0px;
 }
+
+.modal-dialog-centered {
+  align-items: stretch !important;
+}
+
+.modal-content {
+  background-color: #5e5858 !important;
+}

@@ -1,0 +1,32 @@
+.team-informations{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: flex-start;
+}
+  
+.team-image-info {
+  width: 170px;
+  height: auto;
+  margin: 13px 0px;
+}
+
+.team-image-container {
+  text-align: center;
+}
+  
+.text-info {
+  font-size: 14px;
+  font-weight: bold;
+  color: #e1e1e1 !important;
+}
+
+.team-flag {
+  width: auto;
+  height: 15px;
+  align-self: center;
+}
+
+.painel-inner {
+  display: flex;
+}
