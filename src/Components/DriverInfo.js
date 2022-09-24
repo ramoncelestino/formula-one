@@ -37,22 +37,21 @@ const DriverInfo = (props) =>{
                 <div className='text-info'>Name: {props.driver_data.name}</div>
                 <div className='text-info'>Number: {props.driver_data.number}</div>
                 <div className='text-info'>Birthdate: {formatDate(props.driver_data.birthdate)}</div>
+                <div className='text-info'>
+                    Country: {props.driver_data.country.code} - <img className='pilot-flag' src={`https://countryflagsapi.com/png/${props.driver_data.country.code}`}></img>
+                </div>
                 <div className='text-info'>World championships: {props.driver_data.world_championships}</div>
                 <div className='text-info'>Grands prix entered: {props.driver_data.grands_prix_entered}</div>
                 <div className='text-info'>Podiums: {props.driver_data.podiums}</div>
                 { props.driver_data.highest_race_finish.position == '1'  ? <div className='text-info'>Wins: {props.driver_data.highest_race_finish.number}</div> : <div className='text-info'>Wins: 0</div>}
-                <div className='text-info'>
-                    Country: {props.driver_data.country.code} - <img className='pilot-flag' src={`https://countryflagsapi.com/png/${props.driver_data.country.code}`}></img>
-                </div>
                 <div className='container pilot-teams'>
                     <p>Teams:</p> 
                     <div className='container pilot-teams-list-container'>
-                        {/* {getDriverTeams().map(team => (<div>{team}</div>))} */}
                         {getDriverTeams().map(team => (<div className="pilot-team-image-div"> <img className="pilot-team-image" src={team}></img> </div>))}
                     </div>
                 </div>
             </div> 
-            <div className='container col-12'>
+            <div className='container charts'>
                 <DriverChart driver_id={props.driver_data.id}/>
             </div>
         </div>

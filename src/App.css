@@ -71,5 +71,9 @@
 }
 
 .modal-content {
-  background-color: #5e5858 !important;
+  background-color: #262626 !important;
+}
+
+.modal-title{
+  color: #e1e1e1 ;
 }

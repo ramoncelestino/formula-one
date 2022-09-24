@@ -13,7 +13,7 @@ function App() {
   const [options, setOptions] = useState({
     method: 'GET',
     url: 'https://api-formula-1.p.rapidapi.com/drivers',
-    params: {search: 'ham'},
+    params: {search: ''},
     headers: {
       'X-RapidAPI-Key': '0e9cab5be1mshcfae3dc43f30f9bp188b61jsn8e2c8b3f816d',
       'X-RapidAPI-Host': 'api-formula-1.p.rapidapi.com'
@@ -25,8 +25,8 @@ function App() {
   const [teamInfo, setTeamInfo] = useState({});
   const [cardClick, setCardClick] = useState(false);
   const [inputFilled, setInputFilled] = useState('');
-  const [search, setSearch] = useState(false);
-
+  const [search, setSearch] = useState();
+  
   useEffect(() => {
     setOptions(
       { method: 'GET',
@@ -46,11 +46,11 @@ function App() {
   // Quando o componente for renderizado, se estiver preenchido, vai executar a
   // cada vez que o estado do que for passado como parametro mudar
   useEffect(() => {
+    console.log('requisição');
     axios.request(options)
     .then((result) => setData(result.data.response))
     .catch((error) => console.error(error))
 
-    setSearch(false);
   }, [search])
 
   const handleClosePanel = () => {
@@ -62,7 +62,7 @@ function App() {
   }
 
   const handleSearch = () => {
-    setSearch(true);
+    setSearch(Math.random());
   }
 
   const handleSearchType = (e) => {
@@ -90,15 +90,15 @@ function App() {
         <input onChange={(e) => setInputFilled(e.target.value)}></input>
         <button onClick={handleSearch}>Search</button>
       </div>
-      {searchType == 'drivers' && <DriverList Drivers_Data= {data} onClickDriver = {onClickDriverHandler} />}
-      {searchType == 'teams' && <TeamsList Teams_Data= {data} onClickTeam = {onClickTeamHandler}/>}
+      {searchType === 'drivers' && <DriverList Drivers_Data= {data} onClickDriver = {onClickDriverHandler} />}
+      {searchType === 'teams' && <TeamsList Teams_Data= {data} onClickTeam = {onClickTeamHandler}/>}
       <Modal show={cardClick} onHide={handleClosePanel} backdrop="static" keyboard={false} size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title>Infomations</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {searchType == 'drivers' && <DriverInfo driver_data = {driverInfo}/>}
-          {searchType == 'teams' && <TeamInfo team_data = {teamInfo}/>}
+          {searchType === 'drivers' && <DriverInfo driver_data = {driverInfo}/>}
+          {searchType === 'teams' && <TeamInfo team_data = {teamInfo}/>}
         </Modal.Body>
       </Modal>
     </div>
