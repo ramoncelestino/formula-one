@@ -1,5 +1,5 @@
 
-  .teams {
+  .Constructors {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -8,7 +8,7 @@
     align-items: center;
   }
   
-  .team-inner {
+  .Constructor-inner {
     position: relative;
     width: 100%;
     height: 100%;
@@ -17,7 +17,7 @@
     justify-content: center;
   }
   
-    .team-image {
+    .Constructor-image {
     position: absolute;
     width: 125px;
     height: 125px;
@@ -27,7 +27,7 @@
     z-index: 1;
   }
   
-  .team-name {
+  .Constructor-name {
     position: absolute;
     width: 130px;
     text-align: center;

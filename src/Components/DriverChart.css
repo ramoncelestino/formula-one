@@ -1,4 +1,39 @@
 .chart{
-    background-color: #262626;
-    border-radius: 1%;
+ 
+}
+
+.chart-data{
+    padding-top: 28px;
+}
+
+.driver-section-header{
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 6px;
+}
+
+.driver-section-body{
+    display: flex;
+    justify-content: center;
+}
+
+.search-type-chart{
+    align-self: start;
+    font-size: 13px;
+}
+
+.title-driver-section{
+    color: #fff;
+    font-weight: bold;
+    font-size: 19px;
+    align-self: center;
+}
+
+.driver-section{
+    background-color: #404040;
+    border-radius: 8px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 9px;
 }

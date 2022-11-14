@@ -1,4 +1,4 @@
-.pilot-informations{
+  .pilot-informations{
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
@@ -30,7 +30,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin-top: 7px;
   }
   
   .pilot-flag {
@@ -41,13 +40,28 @@
 
   .painel-inner {
     display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
   }
 
-.pilot-teams-list-container{
+  .info-section{
+    margin-top: 0 !important;
+  }
+
+/*se a lista das equipes for com as imagens das equipes usar essa estilização*/
+/* .pilot-teams-list-container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+} */
+
+/*se a lista das equipes for com os nomes das equipes usar essa estilização*/
+.pilot-teams-list-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .pilot-team-image-div{
@@ -61,5 +75,15 @@
 }
 
 .charts{
-  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.driver-section{
+  background-color: #404040;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  padding: 9px;
 }

@@ -12,11 +12,12 @@ const DriverList = (props) =>{
 
   return(
   <div className="drivers container">
-    {props.Drivers_Data && props.Drivers_Data.map((driver, i) => (
+    {props.Drivers_Data.map((driver, i) => (
       <Card  className="pilot-card" onClickCard={onClickCardHandler} driverInfo = {driver}>
         <div className="card-inner">
-          <img className="pilot-image" src={driver.image}></img>
-          <span className="pilot-name">{driver.name}</span>
+          {/* <img className="pilot-image" src={driver.image}></img> */}
+          <img className="pilot-image" src={`images/drivers/${driver.givenName}-${driver.familyName}.jpg`}></img>
+          <span className="pilot-name">{driver.givenName} {driver.familyName}</span>
         </div>
       </Card>
     ))}
